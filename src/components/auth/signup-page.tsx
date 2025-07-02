@@ -2,7 +2,7 @@
 
 import { SignUpPage, Testimonial } from "@/components/ui/sign-up";
 import { useSignUp } from "@clerk/nextjs";
-import { useRouter } from "next/navigation"; // <-- use next/navigation
+import { useRouter } from "next/navigation"; 
 import { Spinner } from "@/components/ui/spinner";
 import React from "react";
 
@@ -106,6 +106,7 @@ export function SignUpSection() {
 		}
 	};
 
+	// Google handler is already correct
 	const handleGoogleSignUp = async () => {
 		if (!signUp || !isLoaded) return;
 		
@@ -113,11 +114,10 @@ export function SignUpSection() {
 		setError("");
 
 		try {
-			// After OAuth redirect, user creation should be handled in /sso-callback or /
 			await signUp.authenticateWithRedirect({
 				strategy: "oauth_google",
 				redirectUrl: "/sso-callback",
-				redirectUrlComplete: "/",
+				redirectUrlComplete: "/sso-callback", // <-- force callback page to always run
 			});
 		} catch (err: any) {
 			console.error("Error with Google sign up:", err);
@@ -144,7 +144,7 @@ export function SignUpSection() {
 			<div className="flex items-center justify-center min-h-screen bg-background text-foreground">
 				<div className="w-full max-w-md p-8">
 					<div className="flex flex-col gap-6">
-						<h1 className="text-4xl md:text-5xl font-semibold leading-tight font-light text-foreground tracking-tighter">
+						<h1 className="text-4xl md:text-5xl font-semibold leading-tight  text-foreground tracking-tighter">
 							Verify your email
 						</h1>
 						<p className="text-muted-foreground">
@@ -152,7 +152,7 @@ export function SignUpSection() {
 						</p>
 
 						{error && (
-							<div className="p-4 text-sm text-red-600 bg-red-50 dark:bg-red-900/20 dark:text-red-400 rounded-2xl">
+							<div className="p-4 text-sm text-red-400 rounded-2xl">
 								{error}
 							</div>
 						)}
@@ -244,7 +244,7 @@ const SignUpPageWithError: React.FC<SignUpPageWithErrorProps> = ({
 						</p>
 
 						{error && (
-							<div className="p-4 text-sm text-red-600 bg-red-50 dark:bg-red-900/20 dark:text-red-400 rounded-2xl">
+							<div className="p-4 text-sm text-red-600  rounded-2xl">
 								{error}
 							</div>
 						)}
@@ -381,7 +381,7 @@ const GoogleIcon = () => (
 );
 
 const TestimonialCard = ({ testimonial, delay }: { testimonial: Testimonial, delay: string }) => (
-	<div className={`animate-testimonial ${delay} flex items-start gap-3 rounded-3xl bg-card/40 dark:bg-zinc-800/40 backdrop-blur-xl border border-white/10 p-5 w-64`}>
+	<div className={`animate-testimonial ${delay} flex items-start gap-3 rounded-3xl bg-card/40 backdrop-blur-xl border border-white/10 p-5 w-64`}>
 		<img src={testimonial.avatarSrc} className="h-10 w-10 object-cover rounded-2xl" alt="avatar" />
 		<div className="text-sm leading-snug">
 			<p className="flex items-center gap-1 font-medium">{testimonial.name}</p>

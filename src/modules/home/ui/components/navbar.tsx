@@ -40,7 +40,7 @@ const Navbar = () => {
               </Button>
             </Link>
 
-<Link href="/auth/get-started">
+<Link href="/auth/signin">
             
               <Button size="sm">Sign In</Button>
               </Link>

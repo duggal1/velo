@@ -82,14 +82,12 @@ export function SignInSection() {
 		}
 	};
 
+	// Google sign in handler
 	const handleGoogleSignIn = async () => {
 		if (!signIn || !isLoaded) return;
-		
 		setLoading(true);
 		setError("");
-
 		try {
-			// After OAuth redirect, user creation should be handled in /sso-callback or /
 			await signIn.authenticateWithRedirect({
 				strategy: "oauth_google",
 				redirectUrl: "/sso-callback",

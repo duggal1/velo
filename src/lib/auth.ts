@@ -18,19 +18,30 @@ export async function getCurrentUser() {
 }
 
 export async function createOrGetUser(clerkId: string, email: string) {
-  let user = await prisma.user.findUnique({
-    where: { clerkId }
-  });
-
-  if (!user) {
-    user = await prisma.user.create({
-      data: {
-        id: clerkId,      // Make sure id and clerkId are the same
-        clerkId: clerkId,
-        email: email
-      }
+  console.log("Attempting to create/get user:", { clerkId, email });
+  
+  try {
+    let user = await prisma.user.findUnique({
+      where: { clerkId }
     });
-  }
 
-  return user;
+    if (!user) {
+      console.log("User not found, creating new user");
+      user = await prisma.user.create({
+        data: {
+          id: clerkId,
+          clerkId,
+          email
+        }
+      });
+      console.log("Created new user:", user);
+    } else {
+      console.log("Found existing user:", user);
+    }
+
+    return user;
+  } catch (error) {
+    console.error("Error in createOrGetUser:", error);
+    throw error;
+  }
 }
