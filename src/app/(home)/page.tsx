@@ -1,7 +1,7 @@
 import { SignedIn } from "@clerk/nextjs";
 import Image from "next/image";
 
-import { ProjectForm } from "@/modules/home/ui/components/project-form";
+import  {ProjectForm}  from "@/modules/home/ui/components/project-form";
 import { ProjectsList } from "@/modules/home/ui/components/projects-list";
 import HumanoidSection from "@/components/scroll-section";
 
@@ -12,8 +12,7 @@ export default function HomePage() {
   return (
     <div className="relative min-h-screen w-full ">
       {/* Full viewport background gradient */}
-     
- <div
+      <div
         className="fixed inset-0 -z-10 w-screen h-screen"
         style={{
           background: `
@@ -60,6 +59,7 @@ export default function HomePage() {
           `
         }}
       />
+
       {/* Content */}
       <section className="relative z-10 space-y-6 py-[16vh] 2xl:py-48">
         <div className="flex flex-col items-center">

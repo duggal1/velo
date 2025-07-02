@@ -14,10 +14,20 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 
+model User {
+  id        String    @id
+  email     String    @unique
+  clerkId   String    @unique
+  projects  Project[]
+  createdAt DateTime  @default(now())
+  updatedAt DateTime  @updatedAt
+}
+
 model Project {
-  id String @id @default(uuid())
-  name String
+  id     String @id @default(uuid())
+  name   String
   userId String
+  user   User   @relation(fields: [userId], references: [id], onDelete: Cascade)
 
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
@@ -36,34 +46,34 @@ enum MessageType {
 }
 
 model Message {
-  id String @id @default(uuid())
-  content String
-  role MessageRole
-  type MessageType
-  createdAt DateTime @default(now())
-  updatedAt DateTime @updatedAt
+  id        String      @id @default(uuid())
+  content   String
+  role      MessageRole
+  type      MessageType
+  createdAt DateTime    @default(now())
+  updatedAt DateTime    @updatedAt
 
   fragment Fragment?
 
   projectId String
-  project Project @relation(fields: [projectId], references: [id], onDelete: Cascade)
+  project   Project @relation(fields: [projectId], references: [id], onDelete: Cascade)
 }
 
 model Fragment {
-  id String @id @default(uuid())
-  messageId String @unique
-  message Message @relation(fields: [messageId], references: [id], onDelete: Cascade)
+  id        String  @id @default(uuid())
+  messageId String  @unique
+  message   Message @relation(fields: [messageId], references: [id], onDelete: Cascade)
 
   sandboxUrl String
-  title String
-  files Json
+  title      String
+  files      Json
 
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
 }
 
 model Usage {
-  key String @id
+  key    String    @id
   points Int
   expire DateTime?
 }

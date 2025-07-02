@@ -33,14 +33,18 @@ const Navbar = () => {
         </Link>
         <SignedOut>
           <div className="flex gap-2">
-            <SignUpButton>
+            <Link href="/auth/get-started">
+            
               <Button variant="outline" size="sm">
                 Sign Up
               </Button>
-            </SignUpButton>
-            <SignInButton>
+            </Link>
+
+<Link href="/auth/get-started">
+            
               <Button size="sm">Sign In</Button>
-            </SignInButton>
+              </Link>
+
           </div>
         </SignedOut>
         <SignedIn>

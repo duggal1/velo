@@ -4,8 +4,6 @@
 
 /* Tailwind 4.1 CSS-first configuration */
 
-
-
 /* Custom variant for dark mode - always active in ultra black mode */
 @custom-variant dark (&);
 
@@ -18,13 +16,13 @@
   --color-card-foreground: #ffffff;
   --color-popover: #111111;
   --color-popover-foreground: #ffffff;
-  
+
   /* Vibrant Orange Primary */
   --color-primary: #ff6b35;
   --color-primary-foreground: #ffffff;
   --color-primary-hover: #ff5722;
   --color-primary-active: #e64a19;
-  
+
   /* Secondary colors with orange tints */
   --color-secondary: #1a1a1a;
   --color-secondary-foreground: #ffffff;
@@ -32,21 +30,21 @@
   --color-muted-foreground: #a0a0a0;
   --color-accent: #ff6b35;
   --color-accent-foreground: #ffffff;
-  
+
   /* Destructive and utility colors */
   --color-destructive: #ef4444;
   --color-destructive-foreground: #ffffff;
   --color-border: #333333;
   --color-input: #1a1a1a;
   --color-ring: #ff6b35;
-  
+
   /* Chart colors with orange theme */
   --color-chart-1: #ff6b35;
   --color-chart-2: #ff8a65;
   --color-chart-3: #ffab91;
   --color-chart-4: #ffccbc;
   --color-chart-5: #ff5722;
-  
+
   /* Sidebar colors */
   --color-sidebar: #0a0a0a;
   --color-sidebar-foreground: #ffffff;
@@ -56,12 +54,12 @@
   --color-sidebar-accent-foreground: #ffffff;
   --color-sidebar-border: #333333;
   --color-sidebar-ring: #ff6b35;
-  
+
   /* Typography */
   --font-sans: var(--font-bricolage), "Roboto Condensed", ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
   --font-serif: ui-serif, Georgia, Cambria, "Times New Roman", Times, serif;
   --font-mono: var(--font-geist-mono), ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
-  
+
   /* Beautiful rounded corners - Tailwind 4.1 style */
   --radius-xs: 0.125rem;
   --radius-sm: 0.375rem;
@@ -71,7 +69,7 @@
   --radius-2xl: 1.5rem;
   --radius-3xl: 2rem;
   --radius: 1rem;
-  
+
   /* Enhanced shadows for ultra black theme */
   --shadow-color: #000000;
   --shadow-opacity: 0.8;
@@ -79,7 +77,7 @@
   --shadow-spread: 0px;
   --shadow-offset-x: 0;
   --shadow-offset-y: 2px;
-  
+
   --shadow-2xs: 0 1px 3px 0px rgba(255, 107, 53, 0.1);
   --shadow-xs: 0 1px 3px 0px rgba(255, 107, 53, 0.15);
   --shadow-sm: 0 2px 4px 0px rgba(255, 107, 53, 0.1), 0 1px 2px -1px rgba(255, 107, 53, 0.1);
@@ -89,7 +87,7 @@
   --shadow-xl: 0 20px 25px -5px rgba(255, 107, 53, 0.1), 0 10px 10px -5px rgba(255, 107, 53, 0.04);
   --shadow-2xl: 0 25px 50px -12px rgba(255, 107, 53, 0.25);
   --shadow-inner: inset 0 2px 4px 0 rgba(255, 107, 53, 0.06);
-  
+
   /* Letter spacing */
   --tracking-tighter: -0.05em;
   --tracking-tight: -0.025em;
@@ -97,14 +95,35 @@
   --tracking-wide: 0.025em;
   --tracking-wider: 0.05em;
   --tracking-widest: 0.1em;
-  
+
   /* Spacing */
   --spacing: 0.25rem;
-  
+
   /* Custom orange gradients */
   --gradient-primary: linear-gradient(135deg, #ff6b35 0%, #ff5722 100%);
   --gradient-secondary: linear-gradient(135deg, #ff8a65 0%, #ff6b35 100%);
   --gradient-accent: linear-gradient(135deg, #ffab91 0%, #ff8a65 100%);
+  @keyframes fadeSlideIn {
+  to {
+    opacity: 1;
+    filter: blur(0px);
+    transform: translateY(0px);
+    }
+  }
+  @keyframes slideRightIn {
+  to {
+    opacity: 1;
+    filter: blur(0px);
+    transform: translateX(0px);
+    }
+  }
+  @keyframes testimonialIn {
+  to {
+    opacity: 1;
+    filter: blur(0px);
+    transform: translateY(0px) scale(1);
+    }
+  }
 }
 
 /* Root CSS Variables - Ultra Black Theme Only */
@@ -116,13 +135,13 @@
   --card-foreground: #ffffff;
   --popover: #111111;
   --popover-foreground: #ffffff;
-  
+
   /* Vibrant Orange Primary */
   --primary: #ff6b35;
   --primary-foreground: #ffffff;
   --primary-hover: #ff5722;
   --primary-active: #e64a19;
-  
+
   /* Secondary colors */
   --secondary: #1a1a1a;
   --secondary-foreground: #ffffff;
@@ -130,21 +149,21 @@
   --muted-foreground: #a0a0a0;
   --accent: #ff6b35;
   --accent-foreground: #ffffff;
-  
+
   /* Utility colors */
   --destructive: #ef4444;
   --destructive-foreground: #ffffff;
   --border: #333333;
   --input: #1a1a1a;
   --ring: #ff6b35;
-  
+
   /* Charts */
   --chart-1: #ff6b35;
   --chart-2: #ff8a65;
   --chart-3: #ffab91;
   --chart-4: #ffccbc;
   --chart-5: #ff5722;
-  
+
   /* Sidebar */
   --sidebar: #0a0a0a;
   --sidebar-foreground: #ffffff;
@@ -154,15 +173,15 @@
   --sidebar-accent-foreground: #ffffff;
   --sidebar-border: #333333;
   --sidebar-ring: #ff6b35;
-  
+
   /* Beautiful rounded corners */
   --radius: 1rem;
-  
+
   /* Enhanced typography */
   --font-sans: var(--font-bricolage), "Roboto Condensed", ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
   --font-serif: ui-serif, Georgia, Cambria, "Times New Roman", Times, serif;
   --font-mono: var(--font-geist-mono), ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
-  
+
   /* Shadow system */
   --shadow-color: #000000;
   --shadow-opacity: 0.8;
@@ -173,7 +192,7 @@
   --letter-spacing: 0em;
   --spacing: 0.25rem;
   --tracking-normal: 0em;
-  
+
   /* Orange-tinted shadows */
   --shadow-2xs: 0 1px 3px 0px rgba(255, 107, 53, 0.1);
   --shadow-xs: 0 1px 3px 0px rgba(255, 107, 53, 0.15);
@@ -191,7 +210,7 @@
     font-family: var(--font-sans);
     @apply border-border outline-ring/50;
   }
-  
+
   html, body, #__next {
     min-height: 100vh;
     color: #fff;
@@ -203,7 +222,7 @@
     scroll-behavior: smooth;
     /* Removed @apply bg-black; */
   }
-  
+
   body {
     @apply text-white overscroll-none antialiased;
     letter-spacing: var(--tracking-normal);
@@ -484,11 +503,11 @@
   .section-container {
     @apply px-4 py-8;
   }
-  
+
   .section-title {
     @apply text-3xl md:text-4xl;
   }
-  
+
   .btn-primary,
   .btn-secondary,
   .btn-outline,
