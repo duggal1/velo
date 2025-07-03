@@ -91,7 +91,7 @@ export function SignInSection() {
 			await signIn.authenticateWithRedirect({
 				strategy: "oauth_google",
 				redirectUrl: "/sso-callback",
-				redirectUrlComplete: "/",
+				redirectUrlComplete: "/sso-callback",
 			});
 		} catch (err: any) {
 			console.error("Error with Google sign in:", err);

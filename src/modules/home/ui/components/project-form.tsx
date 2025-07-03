@@ -47,7 +47,10 @@ const ProjectForm = () => {
       },
       onError: (error) => {
         if (error.data?.code === "UNAUTHORIZED") {
-          clerk.openSignIn();
+          // Only open sign in if user is not signed in
+          if (!clerk.user) {
+            clerk.openSignIn();
+          }
         }
 
         if (error.data?.code === "TOO_MANY_REQUESTS") {

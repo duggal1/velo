@@ -15,10 +15,23 @@ export const projectsRouter = createTRPCRouter({
       })
     )
     .query(async ({ input, ctx }) => {
+      // Fetch user by clerkId to get internal user id
+      const user = await prisma.user.findUnique({
+        where: { clerkId: ctx.auth.userId },
+        select: { id: true },
+      });
+
+      if (!user) {
+        throw new TRPCError({
+          code: "UNAUTHORIZED",
+          message: "User not found",
+        });
+      }
+
       const existingProject = await prisma.project.findUnique({
         where: {
           id: input.id,
-          userId: ctx.auth.userId,
+          userId: user.id,
         },
       });
 
@@ -32,9 +45,22 @@ export const projectsRouter = createTRPCRouter({
       return existingProject;
     }),
   getMany: protectedProcedure.query(async ({ ctx }) => {
+    // Fetch user by clerkId to get internal user id
+    const user = await prisma.user.findUnique({
+      where: { clerkId: ctx.auth.userId },
+      select: { id: true },
+    });
+
+    if (!user) {
+      throw new TRPCError({
+        code: "UNAUTHORIZED",
+        message: "User not found",
+      });
+    }
+
     const projects = await prisma.project.findMany({
       where: {
-        userId: ctx.auth.userId,
+        userId: user.id,
       },
       orderBy: {
         updatedAt: "desc",
@@ -69,9 +95,22 @@ export const projectsRouter = createTRPCRouter({
         }
       }
 
+      // Fetch user by clerkId to get internal user id
+      const user = await prisma.user.findUnique({
+        where: { clerkId: ctx.auth.userId },
+        select: { id: true },
+      });
+
+      if (!user) {
+        throw new TRPCError({
+          code: "UNAUTHORIZED",
+          message: "User not found",
+        });
+      }
+
       const createdProject = await prisma.project.create({
         data: {
-          userId: ctx.auth.userId,
+          userId: user.id,
           name: generateSlug(2, { format: "kebab" }),
           messages: {
             create: {

@@ -5,7 +5,7 @@ import {
   createState,
   createTool,
   type Message,
-  openai,
+  gemini,
   type Tool,
 } from "@inngest/agent-kit";
 import { z } from "zod";
@@ -21,6 +21,7 @@ import {
 } from "./utils";
 import { SANDBOX_TIMEOUT_IN_MS } from "@/constants";
 
+
 interface AgentState {
   summary: string;
   files: FileCollection;
@@ -31,7 +32,7 @@ export const codeAgentFunction = inngest.createFunction(
   { event: "code-agent/run" },
   async ({ event, step }) => {
     const sandboxId = await step.run("get-sandbox-id", async () => {
-      const sandbox = await Sandbox.create("lovable-clone-nextjs-sg-0206");
+      const sandbox = await Sandbox.create("velo-nextjs-02");
       await sandbox.setTimeout(SANDBOX_TIMEOUT_IN_MS);
       return sandbox.sandboxId;
     });
@@ -78,10 +79,15 @@ export const codeAgentFunction = inngest.createFunction(
       name: "code-agent",
       description: "An expert coding agent",
       system: PROMPT,
-      model: openai({
-        model: "gpt-4.1",
+      model: gemini({
+        model: "gemini-2.5-flash",
         defaultParameters: {
-          temperature: 0.1,
+          generationConfig: {
+            temperature: 0.35,
+            topP: 0.9,
+            topK: 40,
+            maxOutputTokens: 100096,
+          },
         },
       }),
       tools: [
@@ -97,7 +103,6 @@ export const codeAgentFunction = inngest.createFunction(
                 stdout: "",
                 stderr: "",
               };
-
               try {
                 const sandbox = await getSandbox(sandboxId);
                 const result = await sandbox.commands.run(command, {
@@ -108,7 +113,6 @@ export const codeAgentFunction = inngest.createFunction(
                     buffers.stderr += data;
                   },
                 });
-
                 return result.stdout;
               } catch (error) {
                 console.error(
@@ -221,10 +225,15 @@ export const codeAgentFunction = inngest.createFunction(
       name: "fragment-title-generator",
       description: "A fragment title generator",
       system: FRAGMENT_TITLE_PROMPT,
-      model: openai({
-        model: "gpt-4o",
+      model: gemini({
+        model: "gemini-2.5-flash",
         defaultParameters: {
-          temperature: 0.1,
+          generationConfig: {
+            temperature: 0.3,
+            topP: 0.95,
+            topK: 40,
+            maxOutputTokens: 2048,
+          },
         },
       }),
     });
@@ -233,10 +242,15 @@ export const codeAgentFunction = inngest.createFunction(
       name: "response-generator",
       description: "A response generator",
       system: RESPONSE_PROMPT,
-      model: openai({
-        model: "gpt-4o",
+      model: gemini({
+        model: "gemini-2.5-flash",
         defaultParameters: {
-          temperature: 0.1,
+          generationConfig: {
+            temperature: 0.35,
+            topP: 0.95,
+            topK: 40,
+            maxOutputTokens: 2048,
+          },
         },
       }),
     });

@@ -3,10 +3,17 @@ import { Sandbox } from "@e2b/code-interpreter";
 import { AgentResult, type Message, TextMessage } from "@inngest/agent-kit";
 
 export async function getSandbox(sandboxId: string) {
-  const sandbox = await Sandbox.connect(sandboxId);
-  await sandbox.setTimeout(SANDBOX_TIMEOUT_IN_MS); // half hour
+  try {
+    const sandbox = await Sandbox.connect(sandboxId);
+    await sandbox.setTimeout(SANDBOX_TIMEOUT_IN_MS); // half hour
 
-  return sandbox;
+    return sandbox;
+  } catch (err: any) {
+    if (err?.message?.includes("404")) {
+      throw new Error(`Sandbox not found or inaccessible: ${sandboxId}`);
+    }
+    throw err;
+  }
 }
 
 export function lastAssistantTextMessageContent(result: AgentResult) {

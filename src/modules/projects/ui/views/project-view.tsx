@@ -69,7 +69,7 @@ const ProjectView = ({ projectId }: ProjectViewProps) => {
               <TabsList className="h-8 p-0 border rounded-md">
                 <TabsTrigger value="preview" className="rounded-md">
                   <EyeIcon />
-                  <span>Demo</span>
+                  <span>Live</span>
                 </TabsTrigger>
                 <TabsTrigger value="code" className="rounded-md">
                   <CodeIcon />
