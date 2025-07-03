@@ -7,6 +7,7 @@ import { Toaster } from "@/components/ui/sonner";
 import { siteConfig } from "@/config/site";
 import { TRPCReactProvider } from "@/trpc/client";
 import "./globals.css";
+import "./scroll.css"
 
 
 

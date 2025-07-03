@@ -8,7 +8,7 @@ import {
   gemini,
   type Tool,
 } from "@inngest/agent-kit";
-import { z } from "zod";
+import { z } from "zod"; 
 
 import prisma from "@/lib/prisma";
 import { FRAGMENT_TITLE_PROMPT, PROMPT, RESPONSE_PROMPT } from "@/prompt";
@@ -83,9 +83,7 @@ export const codeAgentFunction = inngest.createFunction(
         model: "gemini-2.5-flash",
         defaultParameters: {
           generationConfig: {
-            temperature: 0.35,
-            topP: 0.9,
-            topK: 40,
+            temperature: 0.1,
             maxOutputTokens: 100096,
           },
         },
@@ -229,7 +227,7 @@ export const codeAgentFunction = inngest.createFunction(
         model: "gemini-2.5-flash",
         defaultParameters: {
           generationConfig: {
-            temperature: 0.3,
+            temperature: 0.6,
             topP: 0.95,
             topK: 40,
             maxOutputTokens: 2048,
@@ -246,7 +244,7 @@ export const codeAgentFunction = inngest.createFunction(
         model: "gemini-2.5-flash",
         defaultParameters: {
           generationConfig: {
-            temperature: 0.35,
+            temperature: 0.6,
             topP: 0.95,
             topK: 40,
             maxOutputTokens: 2048,

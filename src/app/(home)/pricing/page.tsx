@@ -41,16 +41,9 @@ export default function PricingPage() {
         />
       </div>
 
-      <section className="space-y-6 pt-8 2xl:pt-16 mb-0">
+      <section className="space-y-6 pt-8 2xl:pt-16 mt-16">
         <div className="mb-6 mt-0">
-          <Image
-            src="/icons/logo.png"
-            alt="logo"
-            height={68}
-            width={68}
-            className="mx-auto rounded-full"
-          />
-
+         
           <h1 className="text-4xl font-semibold text-white text-center">
             Simple Pricing
           </h1>
