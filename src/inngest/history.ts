@@ -2,12 +2,40 @@
 // Persistence layer for AgentKit conversation history using Prisma
 
 import prisma from "@/lib/prisma";
+import type {
+  State,
+  NetworkRun,
+  AgentResult,
+  getStepTools,
+  StateData,
+} from "@inngest/agent-kit";
 
-// Local definition of HistoryConfig (not imported from @inngest/agent-kit)
-interface HistoryConfig<T = any> {
-  createThread?: (ctx: { state: any; input: string }) => Promise<{ threadId: string }>;
-  get?: (ctx: { threadId: string; state?: any; input?: string; network?: any; step?: any }) => Promise<any[]>;
-  appendResults?: (ctx: { threadId: string; newResults: any[]; userMessage?: any; state?: any; input?: string; network?: any; step?: any }) => Promise<void>;
+// History adapter interface as per documentation
+export interface HistoryConfig<T extends StateData = any> {
+  createThread?: (ctx: {
+    state: State<T>;
+    input: string;
+    network?: NetworkRun<T>;
+    step?: ReturnType<typeof getStepTools>;
+  }) => Promise<{ threadId: string }>;
+  
+  get?: (ctx: {
+    threadId: string;
+    state?: State<T>;
+    input?: string;
+    network?: NetworkRun<T>;
+    step?: ReturnType<typeof getStepTools>;
+  }) => Promise<AgentResult[]>;
+  
+  appendResults?: (ctx: {
+    threadId: string;
+    newResults: AgentResult[];
+    userMessage?: { content: string; role: "user"; timestamp: Date };
+    state?: State<T>;
+    input?: string;
+    network?: NetworkRun<T>;
+    step?: ReturnType<typeof getStepTools>;
+  }) => Promise<void>;
 }
 
 /**
@@ -36,18 +64,39 @@ export const historyAdapter: HistoryConfig = {
       where: { projectId: threadId },
       orderBy: { createdAt: "asc" },
     });
-    return messages.map((msg: any) => ({
-      agentName: msg.role === "ASSISTANT" ? "assistant" : "user",
-      output: [
-        {
-          type: "text" as const,
-          role: msg.role === "ASSISTANT" ? "assistant" : "user",
-          content: msg.content,
-        },
-      ],
-      toolCalls: [],
-      createdAt: msg.createdAt,
-    }));
+    
+    // Transform to AgentResult format according to documentation
+    return messages.map((msg: any) => {
+      // Only include assistant messages in the history
+      if (msg.role === "ASSISTANT") {
+        return {
+          agentName: "assistant", // Use the actual agent name if available
+          output: [
+            {
+              type: "text" as const,
+              role: "assistant" as const,
+              content: msg.content,
+            },
+          ],
+          toolCalls: [],
+          createdAt: msg.createdAt,
+        };
+      } else {
+        // For user messages, create a compatible format
+        return {
+          agentName: "user",
+          output: [
+            {
+              type: "text" as const,
+              role: "user" as const,
+              content: msg.content,
+            },
+          ],
+          toolCalls: [],
+          createdAt: msg.createdAt,
+        };
+      }
+    });
   },
 
   /**
