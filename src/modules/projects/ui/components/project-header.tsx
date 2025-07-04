@@ -40,7 +40,7 @@ const ProjectHeader = ({ projectId }: ProjectHeaderProps) => {
             size="sm"
             className="focus-visible:ring-0 hover:bg-transparent hover:opacity-75 transition-opacity pl-2!"
           >
-            <Image src="/logo.svg" alt="lovable-clone" height={18} width={18} />
+            <Image src="/icons/logo.png" alt="lovable-clone" height={28} width={28} />
             <span className="text-sm font-medium">{project?.name}</span>
             <ChevronDownIcon />
           </Button>

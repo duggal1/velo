@@ -75,18 +75,18 @@ const AssistantMessage = ({
     <div
       className={cn(
         "flex flex-col group px-2 pb-4",
-        type === "ERROR" && "text-red-700 dark:text-red-500"
+        type === "ERROR" && "text-red-500"
       )}
     >
       <div className="flex items-center gap-2 pl-2 mb-2">
         <Image
-          src="/logo.svg"
+          src="/icons/logo.png"
           alt="lovable-clone"
-          height={18}
-          width={18}
-          className="shrink-0"
+          height={38}
+          width={38}
+          className="shrink-0 rounded-full bg-muted p-1"
         />
-        <span className="text-sm font-medium">Lovable Clone</span>
+        <span className="text-sm font-medium">Velo pro</span>
         <span className="text-xs text-muted-foreground opacity-0 transition-opacity group-hover:opacity-100">
           {format(createdAt, "HH:mm 'on' MMM dd, yyyy")}
         </span>

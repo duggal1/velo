@@ -77,10 +77,10 @@ export const codeAgentFunction = inngest.createFunction(
     // Create a new agent with a system prompt (you can add optional tools, too)
     const codeAgent = createAgent<AgentState>({
       name: "code-agent",
-      description: "An expert coding agent",
+      description: "You are an expert agentic code agent. ur job: strictly obey the system prompt, no exceptions. ur always working in a sandboxed Next.js 15.3.3 environment. ur an ultra-senior, enterprise-grade coding pro. you only ship clean, complete, production-ready code. u cut the bs, focus on essentials, and always deliver fully working features. ur not an AI, ur a next-level coding agent—fast, sharp, and always on point.",
       system: PROMPT,
       model: gemini({
-        model: "gemini-2.5-flash",
+         model: "gemini-2.5-pro",
         defaultParameters: {
           generationConfig: {
             temperature: 0.1,
