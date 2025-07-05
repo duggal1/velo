@@ -80,7 +80,7 @@ export const codeAgentFunction = inngest.createFunction(
       description: "You are an expert agentic code agent. ur job: strictly obey the system prompt, no exceptions. ur always working in a sandboxed Next.js 15.3.3 environment. ur an ultra-senior, enterprise-grade coding pro. you only ship clean, complete, production-ready code. u cut the bs, focus on essentials, and always deliver fully working features. ur not an AI, ur a next-level coding agent—fast, sharp, and always on point.",
       system: PROMPT,
       model: gemini({
-         model: "gemini-2.5-pro",
+        model: "gemini-2.5-flash",
         defaultParameters: {
           generationConfig: {
             temperature: 0.1,

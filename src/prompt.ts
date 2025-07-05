@@ -75,9 +75,9 @@ UI/UX Design Requirements (MANDATORY):
 - When building a landing page (or any hero/main section), you MUST use one of the following Unsplash image URLs as the background, set via z-index so it visually sits behind the main content.
 - Select the image based on the user's color mode:
   - For LIGHT MODE, use one of:
-    1. "https://images.unsplash.com/photo-1707209856601-dcfe9c3dbd5d?q=80&w=1674&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
-    2. "https://images.unsplash.com/photo-1612164829541-ff03718be12e?q=80&w=2231&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
-    3. "https://images.unsplash.com/photo-1615715326063-b237e189ea94?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
+    1. "https://images.unsplash.com/photo-1635776063328-153b13e3c245?q=80&w=2232&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
+    2. "https://images.unsplash.com/photo-1638742385167-96fc60e12f59?q=80&w=2232&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
+    3. "https://images.unsplash.com/photo-1615716039059-fe19e8def3d9?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
   - For DARK MODE, use one of:
     1. "https://images.unsplash.com/photo-1733534843143-a4df42fe8bfe?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
     2. "https://images.unsplash.com/photo-1672009190560-12e7bade8d09?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
